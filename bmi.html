@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>비만도 판정</title>
+        <style>
+            th { text-align: center; }
+            .비만도 { font-size: 2em; }
+            #저체중 { color: blue; }
+            #과체중 { color : orange; }
+            #비만 { color: red; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var name = prompt("이름을 입력하세요...");
+            var height = prompt(name + "님의 키를 입력하세요...");
+            var weight = prompt(name + "님의 몸무게를 입력하세요...");
+
+            function returnResult(bmi){
+                if (bmi < 18.5)
+                    return "저체중";
+                else if (bmi >= 18.5 && bmi < 25.0)
+                    return "정상";
+                else if (bmi >= 25.0 && bmi < 30.0)
+                    return "과체중";
+                else
+                    return "비만";
+            }
+
+            function printResult(result) {
+                document.write("<tr><th>비만도</th>");
+                switch(result) {
+                    case("저체중"):
+                        document.write("<td class='비만도', id='저체중'>" + result + "</td></tr>");
+                        break;
+                    case("정상"):
+                        document.write("<td class='비만도'>" + result + "</td></tr>");
+                        break;
+                    case("과체중"):
+                        document.write("<td class='비만도', id='과체중'>" + result + "</td></tr>");
+                        break;
+                    case("비만"):
+                        document.write("<td class='비만도', id='비만'>" + result + "</td></tr>");
+                }
+            }
+
+            var bmi = (Math.round(10 * weight / (height*height / 10000))) / 10;
+            var result = returnResult(bmi);
+
+            document.write("<table border=1>");
+                document.write("<tr><th>이름</th><td>" + name + "</td></tr>");
+                document.write("<tr><th>키</th><td>" + height + "cm</td></tr>");
+                document.write("<tr><th>몸무게</th><td>" + weight + "kg</td></tr>");
+                document.write("<tr><th>BMI</th><td>" + bmi + "</td></tr>");
+                printResult(result);
+            document.write("</table>");
+                
+        </script>
+    </body>
+</html>
